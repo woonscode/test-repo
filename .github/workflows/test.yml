@@ -1,4 +1,4 @@
-name: ie-bank-infra
+name: test
 
 #on: [push, workflow_dispatch]
 on:
