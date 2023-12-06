@@ -1,0 +1,39 @@
+name: ie-bank-infra
+
+#on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - '*'
+      - '!main'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  dev-env-trigger:
+    runs-on: ubuntu-latest
+    environment:
+      name: Development
+    steps:
+    - name: dev env
+      run: echo "dev-env"
+
+  uat-env-trigger:
+    if: github.event.pull_request.base.ref == 'main' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: User Acceptance Testing
+    steps:
+    - name: uat env
+      run: echo "uat-env"
+
+  prod-env-trigger:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+    steps:
+    - name: prod env
+      run: echo "production-env"
