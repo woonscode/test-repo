@@ -1,6 +1,5 @@
 name: test
 
-#on: [push, workflow_dispatch]
 on:
   push:
     branches:
@@ -36,5 +35,5 @@ jobs:
       name: Production
     steps:
     - name: prod env test
-      run: echo "production-envss"
+      run: echo "production-env"
 
